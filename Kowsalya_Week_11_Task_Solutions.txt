@@ -1,0 +1,35 @@
+MongoDB - Week 11 Task
+-----------------------
+
+1. Create
+   A. Create a new database named "library" and switch to it - //use library//
+   B. Create a collection named "books" with fields: title, author, and published_year - //db.createCollection("books")//
+   C. Insert a document into the "books" collection with the details of your favorite book 
+	a. For One book - //db.books.insertOne({title:"Harry Potter", author:"J K Rowling", published_year:1997})// and
+                          //db.books.insertOne({title:"The Great Gatsby", author:"F.Scott Fitzgerald", published_year:1925})//
+	b. For Many Books - //db.books.insertMany([{title:"The Secret", author:"Rhonda Byrne", published_year:2006},{title:"The Alchemist", author:"Paulo Coelho", published_year:1988},{title:"Think like a Monk", author:"Jay Shetty", published_year: 2020}])//
+
+
+2. Read
+   A. Retrieve all documents from the "books" collection - //db.books.find()//
+   B. Find and display only the documents where the author is "J.K. Rowling" - //db.books.find({author:"J K Rowling"})//
+   C. Fetch and display the document with the earliest published year - //db.books.find().sort({published_year:1}).limit(1)//
+
+
+3. Update
+   A. Update the published year of the book with the title "The Catcher in the Rye" to the current year - //db.books.update({title:"The Catcher in the Rye"},{$set:{published_year:2024}})//
+   B. Add a new field "genre" with the value "Mystery" to all documents in the "books" collection - //db.books.updateMany({}, {$set: {genre: "Mystery"}})//
+
+
+4. Delete
+   A. Remove the document with the title "1984" from the "books" collection - //db.books.deleteOne({ title: "1984"})//
+   B. Delete all documents from the "books" collection where the published year is before 2000 - //db.books.deleteMany({publishedYear:{$lt:2000}})//
+
+
+5. Advanced Query
+   A. Find and display the top 3 recently published books from the "books" collection - //db.books.find().sort({ publishedYear: -1 }).limit(3)//
+   B. - Retrieve documents from the "books" collection where the title contains the word "MongoDB" or
+"NoSQL" - //db.books.find({title: { $regex: "(MongoDB|NoSQL)", $options: "i"}})//
+
+
+
